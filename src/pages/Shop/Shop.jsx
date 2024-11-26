@@ -1,8 +1,11 @@
+import Category from "../Home/HomeSection/Category"
 
 
 function Shop() {
   return (
-    <div>Shop</div>
+    <div>
+        <Category></Category>
+    </div>
   )
 }
 

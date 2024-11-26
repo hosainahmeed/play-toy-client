@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth'
 import app from '../../firebase/firebase.config'
 import { GoogleAuthProvider } from 'firebase/auth'
+import Loader from '../Loader/Loader'
 
 export const AuthContext = createContext()
 
@@ -24,18 +25,18 @@ function AuthProvider ({ children }) {
     return createUserWithEmailAndPassword(auth, email, password)
   }
 
-  const googleSignIn = () => {
+  const googleSignIn =  async () => {
     setLoading(true)
-    return signInWithPopup(auth, provider)
-      .then(result => {
-        setUser(result.user)
-        setLoading(false)
-      })
-      .catch(error => {
-        console.error('Google Sign-In error:', error.message)
-        setLoading(false)
-        throw error
-      })
+    try {
+      const result = await signInWithPopup(auth, provider)
+      setUser(result.user)
+      setLoading(false)
+      return result.user
+    } catch (error) {
+      setLoading(false)
+      console.error('Google Sign-In Error:', error)
+      throw error
+    }
   }
 
   const loginUser = (email, password) => {
@@ -68,7 +69,7 @@ function AuthProvider ({ children }) {
 
   return (
     <AuthContext.Provider value={userInfo}>
-      {loading ? <div>Loading...</div> : children}
+      {loading ? <Loader></Loader> : children}
     </AuthContext.Provider>
   )
 }

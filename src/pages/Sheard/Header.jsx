@@ -41,14 +41,14 @@ export default function Header () {
         {/* Navbar Brand */}
         <div
           onClick={() => navigate('/')}
-          className='navbar-brand flex items-end gap-2 pr-3 px-12 py-4'
+          className='navbar-brand flex items-end gap-2 pr-3 md:px-12 py-4'
         >
           <img
             src='https://cdn-icons-png.freepik.com/256/11835/11835521.png?semt=ais_hybrid'
             alt='play Logo'
             className='w-12'
           />
-          <h1 className='font-ranch text-xl font-bold'>
+          <h1 className='font-ranch text-sm md:text-xl font-bold'>
             Play <span className='text-cyan-500'>Toy</span>
           </h1>
         </div>
@@ -100,6 +100,14 @@ export default function Header () {
             </Menu.Item>
           ))}
         </Menu>
+        <div className='flex items-center justify-center gap-2 h-12'>
+          <Button>
+            <FaHeart />
+          </Button>
+          <Button>
+            <FaCartPlus />
+          </Button>
+        </div>
       </Drawer>
     </div>
   )
