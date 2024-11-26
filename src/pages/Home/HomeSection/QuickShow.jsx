@@ -34,7 +34,6 @@ function QuickShow () {
         <div className='flex flex-col items-center gap-2' key={item.id}>
             <img className='object-cover' src={item.img} alt="" />
             <h1 className='font-semibold text-xl'>{item.title}</h1>
-            <Button className='bg-black text-white uppercase'>View Collection</Button>
         </div>
       ))}
     </div>
