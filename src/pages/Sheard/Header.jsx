@@ -66,7 +66,9 @@ export default function Header () {
           <Link to={'wishList'}>
             <FaHeart className='hover:scale-125 transition-all' />
           </Link>
-          <FaCartPlus />
+          <Link to={'cart'}>
+            <FaCartPlus className='hover:scale-125 transition-all' />
+          </Link>
           {user ? (
             <div className='flex items-center gap-2'>
               <div>
@@ -107,9 +109,11 @@ export default function Header () {
               <FaHeart />
             </Button>
           </Link>
-          <Button>
-            <FaCartPlus />
-          </Button>
+          <Link to={'cart'}>
+            <Button>
+              <FaCartPlus />
+            </Button>
+          </Link>
         </div>
       </Drawer>
     </div>

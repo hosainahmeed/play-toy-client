@@ -7,7 +7,7 @@ import {
   HeartOutlined
 } from '@ant-design/icons'
 import { IoCloseCircle } from 'react-icons/io5'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import useAuth from '../../../Components/Hook/useAuth'
@@ -21,7 +21,6 @@ function Category () {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [quantity, setQuantity] = useState(1)
   const [isTapped, setIsTapped] = useState(false)
-  const [isAdding, setIsAdding] = useState(false)
   const { user } = useAuth()
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -30,7 +29,7 @@ function Category () {
   const [priceRange, setPriceRange] = useState([0, 100])
 
   const location = useLocation()
-
+  const navigate = useNavigate()
   useEffect(() => {
     axios.get('http://localhost:5000/products').then(res => {
       setToysData(res.data)
@@ -48,7 +47,7 @@ function Category () {
     setQuantity(1)
     setIsModalVisible(true)
   }
-//adtoCard
+  //adtoCard
   const handleAddToCart = (toy, quantity) => {
     if (!user || !user.email) {
       Swal.fire({
@@ -85,7 +84,7 @@ function Category () {
         Swal.fire({
           icon: 'error',
           title: 'Add Failed',
-          text: 'Something went wrong!'
+          text: 'This items already in your cart if you need then remove or by from cart then tryu again!'
         })
       })
   }
@@ -114,12 +113,11 @@ function Category () {
   )
 
   const addToWishList = toy => {
-    setIsAdding(true);
     const wishListData = {
       toyId: toy._id,
-      userId: user.email,
-    };
-  
+      userId: user.email
+    }
+
     axios
       .post(`http://localhost:5000/wishList`, wishListData)
       .then(result => {
@@ -129,23 +127,26 @@ function Category () {
             title: 'Success',
             text: `Product added to wishlist!`,
             timer: 3000,
-            timerProgressBar: true,
-          });
+            confirmButtonText: 'Go to WishList',
+            denyButtonText: `Don't go`,
+            timerProgressBar: true
+          }).then(result => {
+            if (result.isConfirmed) {
+              navigate('/wishList')
+            }
+          })
         }
       })
       .catch(error => {
-        console.error('Error adding to wishlist:', error);
+        console.error('Error adding to wishlist:', error)
         Swal.fire({
           icon: 'error',
           title: 'Add Failed',
-          text: 'Something went wrong! or item already in your wishlist',
-        });
+          text: 'Something went wrong! or item already in your wishlist'
+        })
       })
-      .finally(() => {
-        setIsAdding(false);
-      });
-  };
-  
+  }
+
   return (
     <div className='py-6'>
       <div className='mb-6'>
@@ -262,7 +263,6 @@ function Category () {
                   </Popover>
                   <Popover content='Add to Wishlist' placement='top'>
                     <button
-                      disabled={isAdding}
                       onClick={() => addToWishList(toy)}
                       className='bg-white p-3 rounded-full hover:bg-black hover:text-white'
                     >

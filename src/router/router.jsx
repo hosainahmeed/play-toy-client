@@ -8,12 +8,13 @@ import ToyseDetails from '../pages/ToyseDetails/ToyseDetails'
 import PrivetRouter from './PrivetRouter'
 import WishListPage from '../pages/WishListPage/WishListPage'
 import ErrorPage from '../pages/Erropage/ErrorPage'
+import CartPage from '../pages/CartPage/CartPage'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Main></Main>,
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
         element: <Register></Register>
       },
       {
-        path: 'cart',
+        path: 'resgiter',
         element: <Register></Register>
       },
       {
@@ -36,6 +37,14 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <WishListPage></WishListPage>
+          </PrivetRouter>
+        )
+      },
+      {
+        path: 'cart',
+        element: (
+          <PrivetRouter>
+            <CartPage></CartPage>
           </PrivetRouter>
         )
       },
