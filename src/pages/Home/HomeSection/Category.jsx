@@ -7,7 +7,10 @@ import {
   HeartOutlined
 } from '@ant-design/icons'
 import { IoCloseCircle } from 'react-icons/io5'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import useAuth from '../../../Components/Hook/useAuth'
 
 function Category () {
   const [toysData, setToysData] = useState([])
@@ -18,6 +21,8 @@ function Category () {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [quantity, setQuantity] = useState(1)
   const [isTapped, setIsTapped] = useState(false)
+  const [isAdding, setIsAdding] = useState(false)
+  const { user } = useAuth()
 
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 6
@@ -27,28 +32,62 @@ function Category () {
   const location = useLocation()
 
   useEffect(() => {
-    fetch('toys.json')
-      .then(res => res.json())
-      .then(data => {
-        setToysData(data)
+    axios.get('http://localhost:5000/products').then(res => {
+      setToysData(res.data)
+      const categories = [...new Set(res.data.map(toy => toy.category))]
+      setUniqueCategories(categories)
 
-        const categories = [...new Set(data.map(toy => toy.category))]
-        setUniqueCategories(categories)
-
-        if (categories.length > 0) setSelectedCategory('')
-      })
+      if (categories.length > 0) setSelectedCategory('')
+    })
   }, [])
+
+  // console.log(toysData);
 
   const handleQuickView = toy => {
     setSelectedToy(toy)
     setQuantity(1)
     setIsModalVisible(true)
   }
-
+//adtoCard
   const handleAddToCart = (toy, quantity) => {
-    const cartItem = { ...toy, quantity }
-    console.log('Added to Cart:', cartItem)
-    setIsModalVisible(false)
+    if (!user || !user.email) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Not Logged In',
+        text: 'Please log in to add items to your cart.'
+      })
+      return
+    }
+    const cartItem = {
+      userId: user.email,
+      toyId: toy._id,
+      name: toy.name,
+      image: toy.image,
+      price: toy.price,
+      category: toy.category,
+      quantity
+    }
+
+    axios
+      .post(`http://localhost:5000/cart`, cartItem)
+      .then(result => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Product added to cart!',
+          timer: 3000,
+          timerProgressBar: true
+        })
+        setIsModalVisible(false)
+      })
+      .catch(error => {
+        console.error('Error adding to cart:', error)
+        Swal.fire({
+          icon: 'error',
+          title: 'Add Failed',
+          text: 'Something went wrong!'
+        })
+      })
   }
 
   const handlePageChange = page => {
@@ -74,6 +113,39 @@ function Category () {
     currentPage * itemsPerPage
   )
 
+  const addToWishList = toy => {
+    setIsAdding(true);
+    const wishListData = {
+      toyId: toy._id,
+      userId: user.email,
+    };
+  
+    axios
+      .post(`http://localhost:5000/wishList`, wishListData)
+      .then(result => {
+        if (result.data.insertedId) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: `Product added to wishlist!`,
+            timer: 3000,
+            timerProgressBar: true,
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Error adding to wishlist:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Add Failed',
+          text: 'Something went wrong! or item already in your wishlist',
+        });
+      })
+      .finally(() => {
+        setIsAdding(false);
+      });
+  };
+  
   return (
     <div className='py-6'>
       <div className='mb-6'>
@@ -155,7 +227,7 @@ function Category () {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
           {paginatedToys.length > 0 ? (
             paginatedToys.map(toy => (
-              <div key={toy.id} className='p-4 relative overflow-hidden group'>
+              <div key={toy._id} className='p-4 relative overflow-hidden group'>
                 <motion.div whileHover={{ scale: 1.1 }} className='w-full h-96'>
                   <img
                     src={toy.image}
@@ -174,9 +246,11 @@ function Category () {
                   className='absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100'
                 >
                   <Popover content='Add to Cart' placement='top'>
-                    <button className='bg-white p-3 rounded-full hover:bg-black hover:text-white'>
-                      <ShoppingCartOutlined />
-                    </button>
+                    <Link to={`/toysDetails/${toy._id}`}>
+                      <button className='bg-white p-3 rounded-full hover:bg-black hover:text-white'>
+                        <ShoppingCartOutlined />
+                      </button>
+                    </Link>
                   </Popover>
                   <Popover content='Quick View' placement='top'>
                     <button
@@ -187,7 +261,11 @@ function Category () {
                     </button>
                   </Popover>
                   <Popover content='Add to Wishlist' placement='top'>
-                    <button className='bg-white p-3 rounded-full hover:bg-black hover:text-white'>
+                    <button
+                      disabled={isAdding}
+                      onClick={() => addToWishList(toy)}
+                      className='bg-white p-3 rounded-full hover:bg-black hover:text-white'
+                    >
                       <HeartOutlined />
                     </button>
                   </Popover>

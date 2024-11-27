@@ -6,14 +6,15 @@ import './reviewStyle.css'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 import { FaQuoteLeft } from 'react-icons/fa6'
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function Testimonials () {
   const [reviewsData, setReviewsData] = useState([])
-useEffect(()=>{
-    fetch('reviews.json')
-    .then((res)=>res.json())
-    .then((data)=>setReviewsData(data))
-})
+  useEffect(() => {
+    axios.get('http://localhost:5000/reviews').then(res => {
+      setReviewsData(res.data)
+    })
+  })
 
   return (
     <div className='relative'>
@@ -23,7 +24,7 @@ useEffect(()=>{
         autoPlay
         src='https://cdn.shopify.com/videos/c/o/v/4d568f4aab50439a84fa00b4def62f59.mp4'
       ></video> */}
-      <div >
+      <div>
         <Swiper
           spaceBetween={30}
           centeredSlides={false}

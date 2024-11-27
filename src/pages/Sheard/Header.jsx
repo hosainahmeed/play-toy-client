@@ -10,7 +10,7 @@ export default function Header () {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   const { user, logOut } = useAuth()
-  console.log(user)
+  // console.log(user)
 
   const navigate = useNavigate()
 
@@ -25,7 +25,6 @@ export default function Header () {
 
   const handleLogOut = () => {
     logOut()
-    navigate('/login')
   }
 
   return (
@@ -64,7 +63,9 @@ export default function Header () {
 
         {/* Right Side Login and Signup */}
         <div className='flex gap-4 items-center justify-end'>
-          <FaHeart />
+          <Link to={'wishList'}>
+            <FaHeart className='hover:scale-125 transition-all' />
+          </Link>
           <FaCartPlus />
           {user ? (
             <div className='flex items-center gap-2'>
@@ -101,9 +102,11 @@ export default function Header () {
           ))}
         </Menu>
         <div className='flex items-center justify-center gap-2 h-12'>
-          <Button>
-            <FaHeart />
-          </Button>
+          <Link to={'wishList'}>
+            <Button>
+              <FaHeart />
+            </Button>
+          </Link>
           <Button>
             <FaCartPlus />
           </Button>

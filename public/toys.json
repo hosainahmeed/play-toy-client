@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "name": "Plush Bunny",
     "image": "https://www.manhattantoy.com/cdn/shop/products/wbapwclvht5itzsq7bv4.jpg?v=1590507281",
     "price": 15.99,
@@ -15,7 +14,6 @@
     "category": "Cuddle Crew"
   },
   {
-    "id": 2,
     "name": "Huggable Teddy Bear",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1TsMjOLbPPpqIJjevjmJLo3kWpEbb-qk0_Q&s",
     "price": 19.99,
@@ -30,7 +28,6 @@
     "category": "Cuddle Crew"
   },
   {
-    "id": 3,
     "name": "Cozy Cat Plush",
     "image": "https://www.acco.org/wp-content/uploads/2020/05/0X0A4086_1024x1024.jpg",
     "price": 14.99,
@@ -45,7 +42,6 @@
     "category": "Cuddle Crew"
   },
   {
-    "id": 4,
     "name": "Explorer's Telescope",
     "image": "https://myplayroom.com.au/cdn/shop/files/1200x1200_45_b469ecbd-028d-4f39-858e-19b1f19f57a3_700x700.png?v=1688182078",
     "price": 29.99,
@@ -60,7 +56,6 @@
     "category": "Discovery Den"
   },
   {
-    "id": 5,
     "name": "Adventure Backpack",
     "image": "https://m.media-amazon.com/images/I/818-fp+F4FL.jpg",
     "price": 24.99,
@@ -75,7 +70,6 @@
     "category": "Discovery Den"
   },
   {
-    "id": 6,
     "name": "Insect Observation Kit",
     "image": "https://m.media-amazon.com/images/I/51PumawewOL._AC_UF894,1000_QL80_.jpg",
     "price": 19.99,
@@ -90,7 +84,6 @@
     "category": "Discovery Den"
   },
   {
-    "id": 7,
     "name": "Glow-in-the-Dark Night Light",
     "image": "https://5.imimg.com/data5/BN/OW/MY-9723342/led-light-up-toys-glow-in-the-dark-party-supplies.jpg",
     "price": 12.99,
@@ -105,7 +98,6 @@
     "category": "Dreamland"
   },
   {
-    "id": 8,
     "name": "Dreamy Unicorn Pillow",
     "image": "https://img.ws.mms.shopee.ph/a74bd17646289909a36608c174aafd21",
     "price": 18.99,
@@ -120,7 +112,6 @@
     "category": "Dreamland"
   },
   {
-    "id": 9,
     "name": "Starry Projector Lamp",
     "image": "https://kiddiewink.pk/cdn/shop/files/Hfebe78d098fb4d33b14ab156e722fd5bX.jpg_960x960_4275723a-8a50-4ba1-915c-03a3da410e8f_1024x1024.webp?v=1722419541",
     "price": 29.99,
@@ -135,7 +126,6 @@
     "category": "Dreamland"
   },
   {
-    "id": 10,
     "name": "Magical Fairy Wand",
     "image": "https://leantoys.com/eng_pl_Magical-Fairy-Tale-Princesses-Set-Interactive-wand-light-sound-Star-projector-function-12735_4.png",
     "price": 9.99,
@@ -150,7 +140,6 @@
     "category": "Fantasy Friends"
   },
   {
-    "id": 11,
     "name": "Princess Castle Playset",
     "image": "https://i5.walmartimages.com/seo/Kid-Connection-Fantasy-Princess-Castle-Play-Set-37-Pieces_bacf4d56-ae6c-4a34-97f2-1e2d1074196c.6fa78dafbae0ed6c4db9c40f3fd65ee1.jpeg",
     "price": 49.99,
@@ -165,7 +154,6 @@
     "category": "Fantasy Friends"
   },
   {
-    "id": 12,
     "name": "Knight's Armor Set",
     "image": "https://m.media-amazon.com/images/I/81QtQfTiM-L._AC_UF894,1000_QL80_.jpg",
     "price": 39.99,
@@ -180,7 +168,6 @@
     "category": "Fantasy Friends"
   },
   {
-    "id": 13,
     "name": "Fairy Tale Dollhouse",
     "image": "https://i5.walmartimages.com/seo/Fairy-Tale-Castle-Toy-Kids-Toys-Model-House-Girl-Assemble-House-Kids-Toy-House-Dollhouse-Miniatures-Gifts-for-Kids-Child_46c4a70c-de23-421a-ba04-c6b3f00aba1d.83c4798a1b29577ed73a94ade7ecd3b0.jpeg",
     "price": 79.99,
@@ -195,7 +182,6 @@
     "category": "Fun Fairyland"
   },
   {
-    "id": 14,
     "name": "Fairy Figurine Set",
     "image": "https://i5.walmartimages.com/asr/bc0103a5-0674-4891-89e3-a599b7cbbd8e.ad198860cb8170446a0ffb10c2b36b11.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
     "price": 14.99,
@@ -210,7 +196,6 @@
     "category": "Fun Fairyland"
   },
   {
-    "id": 15,
     "name": "Glitter Wings Costume",
     "image": "https://m.media-amazon.com/images/I/61DSBA22TqL._AC_.jpg",
     "price": 29.99,
@@ -225,7 +210,6 @@
     "category": "Fun Fairyland"
   },
   {
-    "id": 16,
     "name": "Giggle Gear Tool Set",
     "image": "https://m.media-amazon.com/images/S/al-na-9d5791cf-3faf/9fb7869c-facb-4797-be2f-c74d2073cfa2._SL480_.jpg",
     "price": 19.99,
@@ -240,7 +224,6 @@
     "category": "Giggle Gear"
   },
   {
-    "id": 17,
     "name": "Mechanic's Playbench",
     "image": "https://m.media-amazon.com/images/I/81I-Zgqw6IL._AC_UF894,1000_QL80_.jpg",
     "price": 49.99,
@@ -255,7 +238,6 @@
     "category": "Giggle Gear"
   },
   {
-    "id": 18,
     "name": "Electric Drill Toy",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4SmoXxnBnPYws05E4f1rlQRZEevcA_I0bGA&s",
     "price": 24.99,
@@ -270,7 +252,6 @@
     "category": "Giggle Gear"
   },
   {
-    "id": 19,
     "name": "Train Adventure Set",
     "image": "https://m.media-amazon.com/images/I/61C3AFY93GL._AC_UF1000,1000_QL80_.jpg",
     "price": 39.99,
@@ -285,7 +266,6 @@
     "category": "Joyful Junction"
   },
   {
-    "id": 20,
     "name": "Interactive Rail Crossing",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjo81lCorkkOan-60BbNAb6E_YVqMzVWnoUQ&s",
     "price": 19.99,
@@ -300,7 +280,6 @@
     "category": "Joyful Junction"
   },
   {
-    "id": 21,
     "name": "Toy Train Station",
     "image": "https://m.media-amazon.com/images/I/61u3KLyTuvL.jpg",
     "price": 29.99,
@@ -315,7 +294,6 @@
     "category": "Joyful Junction"
   },
   {
-    "id": 22,
     "name": "Jungle Animal Playset",
     "image": "https://i.ytimg.com/vi/JkOgNoN4WVU/maxresdefault.jpg",
     "price": 34.99,
@@ -330,7 +308,6 @@
     "category": "Jungle Jamboree"
   },
   {
-    "id": 23,
     "name": "Safari Adventure Truck",
     "image": "https://treasureislandtoys.ca/cdn/shop/files/020373026599.pt05_2000x.jpg?v=1707587333",
     "price": 39.99,
@@ -345,7 +322,6 @@
     "category": "Jungle Jamboree"
   },
   {
-    "id": 24,
     "name": "Treehouse Building Set",
     "image": "https://img.lakeshorelearning.com/is/image/OCProduction/hh238?wid=800&fmt=jpeg&qlt=85,1&pscan=auto&op_sharpen=0&resMode=sharp2&op_usm=1,0.65,6,0",
     "price": 44.99,
@@ -360,7 +336,6 @@
     "category": "Jungle Jamboree"
   },
   {
-    "id": 25,
     "name": "Explorer’s Tent",
     "image": "https://ae01.alicdn.com/kf/Sd19e703815274a76a8f4b85eb8f63d98j.jpg_960x960.jpg",
     "price": 24.99,
@@ -375,7 +350,6 @@
     "category": "Lil'Explorers"
   },
   {
-    "id": 26,
     "name": "Binocular Adventure Kit",
     "image": "https://m.media-amazon.com/images/I/81GGKCrzRHL._AC_UF894,1000_QL80_.jpg",
     "price": 19.99,
@@ -390,7 +364,6 @@
     "category": "Lil'Explorers"
   },
   {
-    "id": 27,
     "name": "Wildlife Exploration Book",
     "image": "https://m.media-amazon.com/images/I/51J-99FQCKL._AC_.jpg",
     "price": 14.99,

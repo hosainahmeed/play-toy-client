@@ -34,7 +34,7 @@ function AuthProvider ({ children }) {
       return result.user
     } catch (error) {
       setLoading(false)
-      console.error('Google Sign-In Error:', error)
+      // console.error('Google Sign-In Error:', error)
       throw error
     }
   }

@@ -1,6 +1,5 @@
 [
     {
-        "_id": 1,
         "name": "Awlad Hossain",
         "designation": "Product Designer",
         "profile_image": "https://i.pinimg.com/236x/6e/5b/f4/6e5bf45e0169fc93d736bb777bebc7fe.jpg",
@@ -8,7 +7,6 @@
         "rating": 5
     },
     {
-        "_id": 2,
         "name": "John Doe",
         "designation": "Software Engineer",
         "profile_image": "https://i.pinimg.com/236x/4f/1f/b6/4f1fb61ae9e306e7885e4394fef3f895.jpg",
@@ -16,7 +14,6 @@
         "rating": 4
     },
     {
-        "_id": 3,
         "name": "Jane Smith",
         "designation": "UX Designer",
         "profile_image": "https://i.pinimg.com/236x/49/fc/a6/49fca69752b76facbac267c3e2c88295.jpg",
@@ -24,7 +21,6 @@
         "rating": 5
     },
     {
-        "_id": 4,
         "name": "Michael Lee",
         "designation": "Marketing Specialist",
         "profile_image": "https://i.pinimg.com/236x/9a/ad/5e/9aad5e09b7370d782774d96450541338.jpg",
@@ -32,7 +28,6 @@
         "rating": 4
     },
     {
-        "_id": 5,
         "name": "Emily Johnson",
         "designation": "Project Manager",
         "profile_image": "https://i.pinimg.com/236x/dc/99/f0/dc99f000c9323d9ffbaae6284decfb53.jpg",
@@ -40,7 +35,6 @@
         "rating": 5
     },
     {
-        "_id": 6,
         "name": "Chris Brown",
         "designation": "Frontend Developer",
         "profile_image": "https://i.pinimg.com/236x/1e/b2/47/1eb247fbe45a78790e8ab32f2965c26e.jpg",
@@ -48,7 +42,6 @@
         "rating": 4
     },
     {
-        "_id": 7,
         "name": "Sarah Wilson",
         "designation": "Data Analyst",
         "profile_image": "https://i.pinimg.com/236x/7d/d4/94/7dd494c89b975e6f86cd01c8a924c6ed.jpg",
@@ -56,7 +49,6 @@
         "rating": 5
     },
     {
-        "_id": 8,
         "name": "Daniel Martinez",
         "designation": "Graphic Designer",
         "profile_image": "https://i.pinimg.com/236x/26/3e/41/263e4147bc51afc473b61069727648d6.jpg",
@@ -64,7 +56,6 @@
         "rating": 5
     },
     {
-        "_id": 9,
         "name": "Laura King",
         "designation": "Content Writer",
         "profile_image": "https://i.pinimg.com/236x/60/34/8f/60348f33fcc947789a6deb5637474a9b.jpg",
@@ -72,7 +63,6 @@
         "rating": 4
     },
     {
-        "_id": 10,
         "name": "Jacob White",
         "designation": "Business Consultant",
         "profile_image": "https://i.pinimg.com/236x/8b/86/ed/8b86edadaf9002bbe5fcadb36ae859dd.jpg",
@@ -80,7 +70,6 @@
         "rating": 5
     },
     {
-        "_id": 11,
         "name": "Aisha Khan",
         "designation": "SEO Specialist",
         "profile_image": "https://i.pinimg.com/75x75_RS/7a/4a/38/7a4a38a43cd3ecd1bb0cacb7f294dca2.jpg",
@@ -88,7 +77,6 @@
         "rating": 5
     },
     {
-        "_id": 12,
         "name": "Dav_id Liu",
         "designation": "App Developer",
         "profile_image": "https://i.pinimg.com/75x75_RS/30/06/d4/3006d450ae38fe1b39d7da1a1ba17d89.jpg",
@@ -96,7 +84,6 @@
         "rating": 4
     },
     {
-        "_id": 13,
         "name": "Sophia Martinez",
         "designation": "Social Media Manager",
         "profile_image": "https://i.pinimg.com/75x75_RS/1e/f1/10/1ef1102d91d2b4bb4540fafa4e687378.jpg",
@@ -104,7 +91,6 @@
         "rating": 5
     },
     {
-        "_id": 14,
         "name": "Mark Taylor",
         "designation": "Full-Stack Developer",
         "profile_image": "https://i.pinimg.com/474x/f2/73/88/f27388b0397edcdfc64d2d0c6c9f6c2f.jpg",
@@ -112,7 +98,6 @@
         "rating": 5
     },
     {
-        "_id": 15,
         "name": "Lisa Adams",
         "designation": "HR Manager",
         "profile_image": "https://i.pinimg.com/75x75_RS/b8/a1/6a/b8a16a8c7f20670e6a7b70b432f0e5b0.jpg",
@@ -120,7 +105,6 @@
         "rating": 4
     },
     {
-        "_id": 16,
         "name": "Mohammed Rahman",
         "designation": "IT Consultant",
         "profile_image": "https://i.pinimg.com/75x75_RS/55/50/0a/55500a9f15aa27f4fb45965ecb632cab.jpg",
@@ -128,7 +112,6 @@
         "rating": 5
     },
     {
-        "_id": 17,
         "name": "Anna Stevens",
         "designation": "Operations Manager",
         "profile_image": "https://i.pinimg.com/75x75_RS/6f/c5/99/6fc599207149f3fba278e9b64821e798.jpg",
@@ -136,7 +119,6 @@
         "rating": 4
     },
     {
-        "_id": 18,
         "name": "Robert Green",
         "designation": "Database Administrator",
         "profile_image": "https://i.pinimg.com/videos/thumbnails/originals/bc/da/1f/bcda1fd61ce1ffc9a3735062d834e7f0.0000000.jpg",
@@ -144,7 +126,6 @@
         "rating": 5
     },
     {
-        "_id": 19,
         "name": "Clara Thompson",
         "designation": "Customer Support Specialist",
         "profile_image": "https://i.pinimg.com/75x75_RS/b6/58/72/b65872a731f311db9fa5371cd19a5d8c.jpg",
@@ -152,7 +133,6 @@
         "rating": 5
     },
     {
-        "_id": 20,
         "name": "Oliver Grant",
         "designation": "Network Engineer",
         "profile_image": "https://i.pinimg.com/75x75_RS/a4/a8/05/a4a805c27e7d2a783555f256df1e012b.jpg",

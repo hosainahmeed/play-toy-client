@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaEye, FaGoogle } from 'react-icons/fa'
 import { FaEyeLowVision } from 'react-icons/fa6'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../../Components/Hook/useAuth'
 import Swal from 'sweetalert2'
 // import loginImage from "../../../src/assets/images/login/login.svg";
@@ -10,6 +10,7 @@ function Login () {
   const [showpass, setShowpass] = useState(false)
   const { loginUser, googleSignIn } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const {
     register,
@@ -24,7 +25,7 @@ function Login () {
 
   const handleGoogleLogin = async () => {
     try {
-      const user = await googleSignIn()
+      const user = await googleSignIn();
       Swal.fire({
         icon: 'success',
         title: 'Login Successful',
@@ -32,20 +33,21 @@ function Login () {
         timer: 3000,
         timerProgressBar: true
       }).then(() => {
-        const redirectTo = location.state?.from?.pathname || '/'
-        navigate(redirectTo, { replace: true })
-      })
+        const redirectTo = location.state?.from?.pathname || '/';
+        navigate(redirectTo, { replace: true });
+      });
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Login Failed',
         text: error.message || 'Something went wrong!'
       }).then(() => {
-        reset()
-      })
-      console.error('Error during Google Sign-In:', error)
+        reset();
+      });
+      console.error('Error during Google Sign-In:', error);
     }
-  }
+  };
+  
   return (
     <div className=' md: flex flex-col-reverse md:flex-row min-h-screen  items-center justify-center gap-12 mx-4'>
       {/* <img className="w-72 md:w-96" src={loginImage} /> */}
@@ -116,7 +118,7 @@ function Login () {
         </form>
         <div className='flex items-center gap-2 justify-center mt-2 text-white underline hover:text-cyan-500 cursor-pointer'>
           <FaGoogle></FaGoogle>{' '}
-          <span onClick={handleGoogleLogin}>Resgister with Google</span>
+          <span onClick={handleGoogleLogin}>Login with Google</span>
         </div>
         <h1 className='text-white mt-6'>
           Dont have an account?
