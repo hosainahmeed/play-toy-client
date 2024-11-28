@@ -9,6 +9,9 @@ import PrivetRouter from './PrivetRouter'
 import WishListPage from '../pages/WishListPage/WishListPage'
 import ErrorPage from '../pages/Erropage/ErrorPage'
 import CartPage from '../pages/CartPage/CartPage'
+import BlogsPage from '../pages/BlogsPage/BlogsPage'
+import Payment from '../pages/Payment/Payment'
+import PaymentHistory from '../pages/Payment/PaymentHistory'
 
 const router = createBrowserRouter([
   {
@@ -51,6 +54,30 @@ const router = createBrowserRouter([
       {
         path: 'shop',
         element: <Shop></Shop>
+      },
+      {
+        path: 'blogs',
+        element: (
+          <PrivetRouter>
+            <BlogsPage></BlogsPage>
+          </PrivetRouter>
+        )
+      },
+      {
+        path: 'payment',
+        element: (
+          <PrivetRouter>
+            <Payment></Payment>
+          </PrivetRouter>
+        )
+      },
+      {
+        path: 'history',
+        element: (
+          <PrivetRouter>
+            <PaymentHistory></PaymentHistory>
+          </PrivetRouter>
+        )
       },
       {
         path: '/toysDetails/:id',

@@ -5,11 +5,11 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  signInWithPopup
+  signInWithPopup,
+  updateProfile
 } from 'firebase/auth'
 import app from '../../firebase/firebase.config'
 import { GoogleAuthProvider } from 'firebase/auth'
-import Loader from '../Loader/Loader'
 
 export const AuthContext = createContext()
 
@@ -25,7 +25,7 @@ function AuthProvider ({ children }) {
     return createUserWithEmailAndPassword(auth, email, password)
   }
 
-  const googleSignIn =  async () => {
+  const googleSignIn = async () => {
     setLoading(true)
     try {
       const result = await signInWithPopup(auth, provider)
@@ -49,6 +49,24 @@ function AuthProvider ({ children }) {
     return signOut(auth).finally(() => setLoading(false))
   }
 
+  const updateUserProfile = async updatedData => {
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: updatedData.displayName,
+        photoURL: updatedData.photoURL
+      })
+
+      setUser(prev => ({
+        ...prev,
+        displayName: updatedData.displayName || prev.displayName,
+        photoURL: updatedData.photoURL || prev.photoURL
+      }))
+    } catch (error) {
+      console.error('Error updating user profile:', error)
+      throw error
+    }
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
@@ -64,13 +82,13 @@ function AuthProvider ({ children }) {
     logOut,
     googleSignIn,
     loading,
-    setUser
+    setLoading,
+    setUser,
+    updateUserProfile
   }
 
   return (
-    <AuthContext.Provider value={userInfo}>
-      {loading ? <Loader></Loader> : children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
   )
 }
 

@@ -5,6 +5,7 @@ import { FaEyeLowVision } from 'react-icons/fa6'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../../Components/Hook/useAuth'
 import Swal from 'sweetalert2'
+import axios from 'axios'
 // import loginImage from "../../../src/assets/images/login/login.svg";
 function Login () {
   const [showpass, setShowpass] = useState(false)
@@ -19,13 +20,44 @@ function Login () {
     reset
   } = useForm()
 
-  const onSubmit = data => {
-    console.log(data)
+  const onSubmit = async data => {
+    const { email, password } = data
+    try {
+      const result = await loginUser(email, password)
+      const loggedInUser = result.user
+      console.log(loggedInUser, 'not 29')
+      const user = { email }
+      await axios.post('http://localhost:5000/jwt', user, {
+        withCredentials: true
+      })
+      Swal.fire({
+        title: 'Welcome!',
+        text: 'You have successfully logged in.',
+        icon: 'success',
+        timer: 1000,
+        showConfirmButton: false
+      })
+
+      reset()
+      const redirectTo = location.state?.from?.pathname || '/'
+      navigate(redirectTo, { replace: true })
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `${error.message || error}`
+      })
+      reset()
+    }
   }
 
   const handleGoogleLogin = async () => {
     try {
       const user = await googleSignIn();
+      await axios.post('http://localhost:5000/jwt', { email: user.email }, {
+        withCredentials: true
+      })
+  
       Swal.fire({
         icon: 'success',
         title: 'Login Successful',
@@ -33,8 +65,8 @@ function Login () {
         timer: 3000,
         timerProgressBar: true
       }).then(() => {
-        const redirectTo = location.state?.from?.pathname || '/';
-        navigate(redirectTo, { replace: true });
+        const redirectTo = location.state?.from?.pathname || '/'
+        navigate(redirectTo, { replace: true })
       });
     } catch (error) {
       Swal.fire({
@@ -42,12 +74,13 @@ function Login () {
         title: 'Login Failed',
         text: error.message || 'Something went wrong!'
       }).then(() => {
-        reset();
+        reset()
       });
       console.error('Error during Google Sign-In:', error);
     }
-  };
+  }
   
+
   return (
     <div className=' md: flex flex-col-reverse md:flex-row min-h-screen  items-center justify-center gap-12 mx-4'>
       {/* <img className="w-72 md:w-96" src={loginImage} /> */}

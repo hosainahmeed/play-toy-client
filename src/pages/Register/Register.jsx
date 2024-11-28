@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaEye } from 'react-icons/fa'
 import { FaEyeLowVision, FaGoogle } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../../Components/Hook/useAuth'
+import Swal from 'sweetalert2'
 const Register = () => {
   const [showpass, setShowpass] = useState(false)
   const {
@@ -13,14 +14,54 @@ const Register = () => {
     reset
   } = useForm()
   const { createUser, googleSignIn } = useAuth()
+  const navigate = useNavigate()
+
   const onSubmit = data => {
     const { email, password } = data
+
     createUser(email, password)
+      .then(result => {
+        console.log(result)
+        Swal.fire({
+          icon: 'success',
+          title: 'Registration Successful',
+          text: 'You have been successfully registered!',
+          confirmButtonText: 'Go to Login'
+        }).then(() => {
+          navigate('/login')
+        })
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Registration Failed',
+          text: error.message || 'An error occurred during registration.',
+          confirmButtonText: 'Try Again'
+        })
+      })
     reset()
   }
 
   const handleGoogleRegister = () => {
     googleSignIn()
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Google Sign-In Successful',
+          text: 'You have been signed in successfully!',
+          confirmButtonText: 'Go to Login'
+        }).then(() => {
+          navigate('/login')
+        })
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Google Sign-In Failed',
+          text: error.message || 'An error occurred during Google sign-in.',
+          confirmButtonText: 'Try Again'
+        })
+      })
   }
 
   return (

@@ -5,20 +5,24 @@ import { CiMenuBurger } from 'react-icons/ci'
 import { IoIosLogOut, IoMdClose } from 'react-icons/io'
 import useAuth from '../../Components/Hook/useAuth.jsx'
 import { FaCartPlus, FaHeart } from 'react-icons/fa'
+import useCart from '../../Components/Hook/useCart.jsx'
+import { useWishlist } from '../../Components/api/WishlistContext.jsx'
 
 export default function Header () {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   const { user, logOut } = useAuth()
-  // console.log(user)
+  const { cart } = useCart()
+  const { wishList } = useWishlist()
 
   const navigate = useNavigate()
 
   const menuItems = [
     { label: 'Home', path: '/' },
     { label: 'Shops', path: '/shop' },
-    { label: 'Products', path: '/products' },
-    { label: 'Blog', path: '/blog' }
+    { label: 'Blog', path: '/blogs' },
+    { label: 'Dashboard', path: '/dashboard' },
+    { label: 'History', path: '/history' }
   ]
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen)
@@ -63,17 +67,29 @@ export default function Header () {
 
         {/* Right Side Login and Signup */}
         <div className='flex gap-4 items-center justify-end'>
-          <Link to={'wishList'}>
-            <FaHeart className='hover:scale-125 transition-all' />
-          </Link>
-          <Link to={'cart'}>
-            <FaCartPlus className='hover:scale-125 transition-all' />
-          </Link>
+          <div className='indicator'>
+            <span className='indicator-item badge badge-secondary'>{wishList.length}</span>
+            <div className='p-2'>
+              <Link to={'wishList'}>
+                <FaHeart className='hover:scale-125 transition-all' />
+              </Link>
+            </div>
+          </div>
+          <div className='indicator'>
+            <span className='indicator-item badge badge-secondary'>
+              {cart.length}
+            </span>
+            <div className='p-2'>
+              <Link to={'cart'}>
+                <FaCartPlus className='hover:scale-125 transition-all' />
+              </Link>
+            </div>
+          </div>
           {user ? (
             <div className='flex items-center gap-2'>
               <div>
                 <div className='w-12 h-12 rounded-full border-2 p-2'>
-                  <img src={user.photoURL} alt='' />
+                  <img src={user?.photoURL} alt='' />
                 </div>
               </div>
               <button onClick={handleLogOut} className='hidden lg:block'>

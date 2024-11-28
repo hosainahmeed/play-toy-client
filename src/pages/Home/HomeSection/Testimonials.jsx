@@ -7,6 +7,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 import { FaQuoteLeft } from 'react-icons/fa6'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Skeleton } from 'antd'
 
 function Testimonials () {
   const [reviewsData, setReviewsData] = useState([])
@@ -15,6 +16,16 @@ function Testimonials () {
       setReviewsData(res.data)
     })
   })
+
+
+  if (!reviewsData) {
+    return (
+      <div className="container mx-auto p-6">
+        <h1 className="text-3xl font-semibold mb-6">Your Testimonials</h1>
+        <Skeleton active />
+      </div>
+    );
+  }
 
   return (
     <div className='relative'>

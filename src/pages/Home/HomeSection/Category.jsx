@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Modal, Popover, Pagination, Slider } from 'antd'
+import { Modal, Popover, Pagination, Slider, Skeleton } from 'antd'
 import { motion } from 'framer-motion'
 import {
   ShoppingCartOutlined,
@@ -7,10 +7,11 @@ import {
   HeartOutlined
 } from '@ant-design/icons'
 import { IoCloseCircle } from 'react-icons/io5'
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import useAuth from '../../../Components/Hook/useAuth'
+import { useWishlist } from '../../../Components/api/WishlistContext'
 
 function Category () {
   const [toysData, setToysData] = useState([])
@@ -27,6 +28,7 @@ function Category () {
   const itemsPerPage = 6
 
   const [priceRange, setPriceRange] = useState([0, 100])
+  const { refetch } = useWishlist()
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -39,8 +41,6 @@ function Category () {
       if (categories.length > 0) setSelectedCategory('')
     })
   }, [])
-
-  // console.log(toysData);
 
   const handleQuickView = toy => {
     setSelectedToy(toy)
@@ -122,6 +122,7 @@ function Category () {
       .post(`http://localhost:5000/wishList`, wishListData)
       .then(result => {
         if (result.data.insertedId) {
+          refetch()
           Swal.fire({
             icon: 'success',
             title: 'Success',
@@ -145,6 +146,15 @@ function Category () {
           text: 'Something went wrong! or item already in your wishlist'
         })
       })
+  }
+
+  if (!toysData) {
+    return (
+      <div className='container mx-auto p-6'>
+        <h1 className='text-3xl font-semibold mb-6'>Your Cart</h1>
+        <Skeleton active />
+      </div>
+    )
   }
 
   return (
