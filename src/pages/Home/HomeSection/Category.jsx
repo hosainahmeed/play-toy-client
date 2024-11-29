@@ -12,6 +12,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import useAuth from '../../../Components/Hook/useAuth'
 import { useWishlist } from '../../../Components/api/WishlistContext'
+import useCart from '../../../Components/Hook/useCart'
 
 function Category () {
   const [toysData, setToysData] = useState([])
@@ -70,6 +71,7 @@ function Category () {
     axios
       .post(`http://localhost:5000/cart`, cartItem)
       .then(result => {
+        refetch()
         Swal.fire({
           icon: 'success',
           title: 'Success',

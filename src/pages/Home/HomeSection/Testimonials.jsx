@@ -15,16 +15,15 @@ function Testimonials () {
     axios.get('http://localhost:5000/reviews').then(res => {
       setReviewsData(res.data)
     })
-  })
-
+  }, [])
 
   if (!reviewsData) {
     return (
-      <div className="container mx-auto p-6">
-        <h1 className="text-3xl font-semibold mb-6">Your Testimonials</h1>
+      <div className='container mx-auto p-6'>
+        <h1 className='text-3xl font-semibold mb-6'>Your Testimonials</h1>
         <Skeleton active />
       </div>
-    );
+    )
   }
 
   return (

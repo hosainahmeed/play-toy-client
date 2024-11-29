@@ -5,6 +5,7 @@ import { FaEyeLowVision, FaGoogle } from 'react-icons/fa6'
 import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../../Components/Hook/useAuth'
 import Swal from 'sweetalert2'
+import axios from 'axios'
 const Register = () => {
   const [showpass, setShowpass] = useState(false)
   const {
@@ -13,38 +14,45 @@ const Register = () => {
     formState: { errors },
     reset
   } = useForm()
-  const { createUser, googleSignIn } = useAuth()
+  const { createUser, googleSignIn,user } = useAuth()
   const navigate = useNavigate()
+  const onSubmit = async data => {
+    const { email, password, displayName, photoURL } = data
+    const userData = { displayName, email, photoURL }
 
-  const onSubmit = data => {
-    const { email, password } = data
+    try {
+      await axios.post('http://localhost:5000/users', userData)
+      const result = await createUser(email, password)
+      console.log(result)
+      Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful',
+        text: 'You have been successfully registered!',
+        confirmButtonText: 'Go to Login'
+      }).then(() => {
+        navigate('/login')
+      })
 
-    createUser(email, password)
-      .then(result => {
-        console.log(result)
-        Swal.fire({
-          icon: 'success',
-          title: 'Registration Successful',
-          text: 'You have been successfully registered!',
-          confirmButtonText: 'Go to Login'
-        }).then(() => {
-          navigate('/login')
-        })
+      reset()
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Registration Failed',
+        text: error.message || 'An error occurred during registration.',
+        confirmButtonText: 'Try Again'
       })
-      .catch(error => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Registration Failed',
-          text: error.message || 'An error occurred during registration.',
-          confirmButtonText: 'Try Again'
-        })
-      })
-    reset()
+    }
   }
+  
+  const handleGoogleRegister = async () => {
+    try {
+      await googleSignIn().then(() => {
+        const displayName = user?.displayName || 'Anonymous User'
+        const email = user?.email
+        const photoURL = user?.photoURL || 'default-photo-url'
+        const userData = { displayName, email, photoURL }
 
-  const handleGoogleRegister = () => {
-    googleSignIn()
-      .then(() => {
+        axios.post('http://localhost:5000/users', userData)
         Swal.fire({
           icon: 'success',
           title: 'Google Sign-In Successful',
@@ -54,14 +62,27 @@ const Register = () => {
           navigate('/login')
         })
       })
-      .catch(error => {
+    } catch (error) {
+      if (error.response) {
+        // Handle server-side error
+        Swal.fire({
+          icon: 'error',
+          title: 'Server Error',
+          text:
+            error.response.data.message ||
+            'An error occurred while saving your data.',
+          confirmButtonText: 'Try Again'
+        })
+      } else {
+        // Handle client-side or unknown error
         Swal.fire({
           icon: 'error',
           title: 'Google Sign-In Failed',
           text: error.message || 'An error occurred during Google sign-in.',
           confirmButtonText: 'Try Again'
         })
-      })
+      }
+    }
   }
 
   return (
@@ -78,15 +99,17 @@ const Register = () => {
                 <input
                   placeholder=''
                   type='text'
-                  {...register('name', {
-                    message: 'Invalid name  ',
+                  {...register('displayName', {
+                    message: 'Invalid name',
                     required: 'Name is required'
                   })}
                   className='text-xl w-full p-2 bg-transparent border border-gray-400 text-white focus:outline-none focus:border-cyan-500'
                   autoComplete='given-name'
                 />
-                {errors.name && (
-                  <p className='text-cyan-500 text-sm'>{errors.name.message}</p>
+                {errors.displayName && (
+                  <p className='text-cyan-500 text-sm'>
+                    {errors.displayName.message}
+                  </p>
                 )}
               </div>
             </div>
@@ -96,15 +119,17 @@ const Register = () => {
                 <input
                   placeholder=''
                   type='text'
-                  {...register('name', {
+                  {...register('photoURL', {
                     message: 'Invalid name  ',
                     required: 'Image URL required'
                   })}
                   className='text-xl w-full p-2 bg-transparent border border-gray-400 text-white focus:outline-none focus:border-cyan-500'
                   autoComplete='given-name'
                 />
-                {errors.name && (
-                  <p className='text-cyan-500 text-sm'>{errors.name.message}</p>
+                {errors.photoURL && (
+                  <p className='text-cyan-500 text-sm'>
+                    {errors.photoURL.message}
+                  </p>
                 )}
               </div>
             </div>

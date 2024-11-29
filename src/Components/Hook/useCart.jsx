@@ -19,7 +19,7 @@ const useCart = () => {
     };
 
     fetchCart();
-  }, [axiosSecure,cart]);
+  }, [axiosSecure]);
 
   return { cart, loading, error,setCart };
 };

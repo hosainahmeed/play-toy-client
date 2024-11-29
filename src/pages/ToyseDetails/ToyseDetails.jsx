@@ -4,11 +4,13 @@ import { useState } from 'react'
 import axios from 'axios'
 import useAuth from '../../Components/Hook/useAuth'
 import Swal from 'sweetalert2'
+import useCart from '../../Components/Hook/useCart'
 
 function ToyseDetails () {
   const toy = useLoaderData()
   const [quantity, setQuantity] = useState(1)
   const { user } = useAuth()
+  const { refetch } = useCart()
   const [previewVisible, setPreviewVisible] = useState(false)
 
   if (!toy) {
@@ -55,7 +57,7 @@ function ToyseDetails () {
     axios
       .post(`http://localhost:5000/cart`, cartItem)
       .then(result => {
-        console.log(result)
+        refetch()
         Swal.fire({
           icon: 'success',
           title: 'Success',

@@ -1,44 +1,42 @@
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import useAuth from './useAuth'
-import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
 
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:5000'
+  baseURL: 'http://localhost:5000',
+  withCredentials: true
 })
 
 const useAxiosSecure = () => {
-  const navigate = useNavigate()
   const { logOut } = useAuth()
+  const navigate = useNavigate()
 
-  axiosSecure.interceptors.request.use(
-    function (config) {
-      const token = Cookies.get('token')
-
-      if (token) {
-        config.headers.authorization = `Bearer ${token}`
-      }
-      return config
-    },
-    function (error) {
-      return Promise.reject(error)
-    }
-  )
-
-  axiosSecure.interceptors.response.use(
-    function (response) {
-      return response
-    },
-    async error => {
-      const status = error.response.status
-
+  const handleUnauthorizedError = error => {
+    if (error.response) {
+      const { status } = error.response
       if (status === 401 || status === 403) {
-        await logOut()
-        navigate('/login')
+        console.log('User is unauthorized, logging out...')
+        logOut()
+          .then(() => navigate('/login'))
+          .catch(err => console.error('Logout error:', err))
       }
-      return Promise.reject(error)
+    } else {
+      console.error('Unexpected error:', error)
     }
-  )
+  }
+
+  useEffect(() => {
+    const interceptor = axiosSecure.interceptors.response.use(
+      response => response,
+      error => {
+        handleUnauthorizedError(error)
+        return Promise.reject(error)
+      }
+    )
+
+    return () => axiosSecure.interceptors.response.eject(interceptor)
+  }, [logOut, navigate])
 
   return axiosSecure
 }

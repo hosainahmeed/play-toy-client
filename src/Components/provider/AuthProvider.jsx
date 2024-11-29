@@ -5,8 +5,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  signInWithPopup,
-  updateProfile
+  signInWithPopup
 } from 'firebase/auth'
 import app from '../../firebase/firebase.config'
 import { GoogleAuthProvider } from 'firebase/auth'
@@ -17,7 +16,6 @@ function AuthProvider ({ children }) {
   const auth = getAuth(app)
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-
   const provider = new GoogleAuthProvider()
 
   const createUser = (email, password) => {
@@ -49,7 +47,7 @@ function AuthProvider ({ children }) {
     return signOut(auth).finally(() => setLoading(false))
   }
 
-  const updateUserProfile = async updatedData => {
+  const updateProfile = async updatedData => {
     try {
       await updateProfile(auth.currentUser, {
         displayName: updatedData.displayName,
@@ -74,7 +72,7 @@ function AuthProvider ({ children }) {
     })
     return () => unsubscribe()
   }, [auth])
-
+  
   const userInfo = {
     user,
     createUser,
@@ -84,7 +82,7 @@ function AuthProvider ({ children }) {
     loading,
     setLoading,
     setUser,
-    updateUserProfile
+    updateProfile
   }
 
   return (

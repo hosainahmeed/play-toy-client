@@ -1,25 +1,25 @@
 import { useQuery } from '@tanstack/react-query'
-import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import { FaTrashAlt, FaUsers } from 'react-icons/fa'
 import Swal from 'sweetalert2'
+import useAxiosSecure from '../../Components/Hook/useAxiosSecure'
+import axios from 'axios'
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure()
   const { data: users = [], refetch } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-      const res = await axiosSecure.get('/users')
+      const res = await axios.get('http://localhost:5000/users')
       return res.data
     }
   })
+  console.log(users)
 
   const handleMakeAdmin = user => {
     axiosSecure.patch(`/users/admin/${user._id}`).then(res => {
-      console.log(res.data)
       if (res.data.modifiedCount > 0) {
         refetch()
         Swal.fire({
-          position: 'top-end',
           icon: 'success',
           title: `${user.name} is an Admin Now!`,
           showConfirmButton: false,

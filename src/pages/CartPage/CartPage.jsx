@@ -76,7 +76,7 @@ function CartPage () {
             <p className='text-lg font-semibold text-center'>
               Price: ${item.price}
             </p>
-            <p className='text-lg text-center'>Quantity: {item.quantity}</p>
+            <p className='text-lg text-center'>Quantity: {Number(item.quantity)}</p>
             <button
               onClick={() => handleRemoveItem(item._id)}
               className='mt-4 text-red-500 hover:text-red-700 text-center w-full'

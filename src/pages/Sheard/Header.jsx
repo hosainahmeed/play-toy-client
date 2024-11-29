@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import { Menu, Button, Drawer } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 import { CiMenuBurger } from 'react-icons/ci'
@@ -17,19 +17,20 @@ export default function Header () {
 
   const navigate = useNavigate()
 
-  const menuItems = [
+  const menuItems = useMemo(() => [
     { label: 'Home', path: '/' },
     { label: 'Shops', path: '/shop' },
     { label: 'Blog', path: '/blogs' },
     { label: 'Dashboard', path: '/dashboard' },
-    { label: 'History', path: '/history' }
-  ]
+  ], [])
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen)
 
-  const handleLogOut = () => {
+  const handleLogOut = useCallback(() => {
     logOut()
-  }
+  }, [logOut])
+
+  const handleNavigateHome = () => navigate('/')
 
   return (
     <div className='navbar-container'>
@@ -40,12 +41,8 @@ export default function Header () {
           onClick={toggleDrawer}
           icon={isDrawerOpen ? <IoMdClose /> : <CiMenuBurger />}
         />
-
         {/* Navbar Brand */}
-        <div
-          onClick={() => navigate('/')}
-          className='navbar-brand flex items-end gap-2 pr-3 md:px-12 py-4'
-        >
+        <div onClick={handleNavigateHome} className='navbar-brand flex items-end gap-2 pr-3 md:px-12 py-4'>
           <img
             src='https://cdn-icons-png.freepik.com/256/11835/11835521.png?semt=ais_hybrid'
             alt='play Logo'
@@ -55,7 +52,6 @@ export default function Header () {
             Play <span className='text-cyan-500'>Toy</span>
           </h1>
         </div>
-
         {/* Main Menu for Larger Screens */}
         <Menu mode='horizontal' className='hidden sm:flex'>
           {menuItems.map((item, index) => (
@@ -76,9 +72,7 @@ export default function Header () {
             </div>
           </div>
           <div className='indicator'>
-            <span className='indicator-item badge badge-secondary'>
-              {cart.length}
-            </span>
+            <span className='indicator-item badge badge-secondary'>{cart.length}</span>
             <div className='p-2'>
               <Link to={'cart'}>
                 <FaCartPlus className='hover:scale-125 transition-all' />

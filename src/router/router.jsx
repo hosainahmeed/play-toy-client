@@ -12,6 +12,13 @@ import CartPage from '../pages/CartPage/CartPage'
 import BlogsPage from '../pages/BlogsPage/BlogsPage'
 import Payment from '../pages/Payment/Payment'
 import PaymentHistory from '../pages/Payment/PaymentHistory'
+import UserDashboard from '../pages/dashboard/UserDashboard'
+import AddItem from '../AdminPage/AddItem'
+import AllUsers from '../pages/User/AllUsers'
+import ManageItemPage from '../AdminPage/ManageItemPage'
+import UpdateBlogPage from '../AdminPage/UpdateBlogPage'
+import BlogPageDetails from '../pages/BlogsPage/BlogPageDetails'
+import axios from 'axios'
 
 const router = createBrowserRouter([
   {
@@ -40,6 +47,14 @@ const router = createBrowserRouter([
         element: (
           <PrivetRouter>
             <WishListPage></WishListPage>
+          </PrivetRouter>
+        )
+      },
+      {
+        path: '/blogDetails',
+        element: (
+          <PrivetRouter>
+            <BlogPageDetails />
           </PrivetRouter>
         )
       },
@@ -92,6 +107,57 @@ const router = createBrowserRouter([
             .catch(err => {
               console.error('Error fetching toy details:', err)
             })
+      },
+
+      {
+        path: 'dashboard',
+        element: (
+          <PrivetRouter>
+            <UserDashboard></UserDashboard>
+          </PrivetRouter>
+        ),
+        children: [
+          {
+            path: '/dashboard/addItem',
+            element: (
+              <PrivetRouter>
+                <AddItem></AddItem>
+              </PrivetRouter>
+            )
+          },
+          {
+            path: '/dashboard/allUsers',
+            element: (
+              <PrivetRouter>
+                <AllUsers></AllUsers>
+              </PrivetRouter>
+            )
+          },
+          {
+            path: '/dashboard/manageItem',
+            element: (
+              <PrivetRouter>
+                <ManageItemPage></ManageItemPage>
+              </PrivetRouter>
+            )
+          },
+          {
+            path: '/dashboard/paymentHistory',
+            element: (
+              <PrivetRouter>
+                <PaymentHistory></PaymentHistory>
+              </PrivetRouter>
+            )
+          },
+          {
+            path: '/dashboard/blogUpdate',
+            element: (
+              <PrivetRouter>
+                <UpdateBlogPage></UpdateBlogPage>
+              </PrivetRouter>
+            )
+          }
+        ]
       }
     ]
   }

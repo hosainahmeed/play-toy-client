@@ -53,11 +53,15 @@ function Login () {
 
   const handleGoogleLogin = async () => {
     try {
-      const user = await googleSignIn();
-      await axios.post('http://localhost:5000/jwt', { email: user.email }, {
-        withCredentials: true
-      })
-  
+      const user = await googleSignIn()
+      await axios.post(
+        'http://localhost:5000/jwt',
+        { email: user.email },
+        {
+          withCredentials: true
+        }
+      )
+
       Swal.fire({
         icon: 'success',
         title: 'Login Successful',
@@ -67,7 +71,7 @@ function Login () {
       }).then(() => {
         const redirectTo = location.state?.from?.pathname || '/'
         navigate(redirectTo, { replace: true })
-      });
+      })
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -75,15 +79,13 @@ function Login () {
         text: error.message || 'Something went wrong!'
       }).then(() => {
         reset()
-      });
-      console.error('Error during Google Sign-In:', error);
+      })
+      console.error('Error during Google Sign-In:', error)
     }
   }
-  
 
   return (
     <div className=' md: flex flex-col-reverse md:flex-row min-h-screen  items-center justify-center gap-12 mx-4'>
-      {/* <img className="w-72 md:w-96" src={loginImage} /> */}
       <div className='bg-[#13232f]/90 p-10 rounded-lg shadow-lg'>
         <h1 className='text-center text-white font-light text-3xl mb-10'>
           Welcome Back!

@@ -10,7 +10,7 @@ function CheckoutForm() {
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const [totalPrice, setTotalPrice] = useState(0);
-  const { cart, setCart } = useCart();
+  const { cart, isLoading, refetch } = useCart(); 
   const [clientSecret, setClientSecret] = useState();
   const [transitionId, setTransitionId] = useState();
   const { user } = useAuth();
@@ -38,16 +38,9 @@ function CheckoutForm() {
     }
   }, [totalPrice]);
 
-  useEffect(() => {
-    axiosSecure
-      .get('/cart')
-      .then((res) => {
-        setCart(res.data || []);
-      })
-      .catch((err) => {
-        console.error('Error fetching cart items:', err);
-      });
-  }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -118,8 +111,8 @@ function CheckoutForm() {
           text: 'Your payment has been processed successfully!',
           confirmButtonColor: '#3085d6',
         }).then((res) => {
-          console.log(res.data);
-          setCart([]);
+          // Optionally refetch the cart or clear it here
+          refetch();
         });
       }
     }
@@ -129,7 +122,7 @@ function CheckoutForm() {
     <div className="flex flex-col justify-center items-center gap-4 py-20 px-4 bg-gray-50">
       <div className="flex flex-wrap gap-4 justify-center items-center text-center">
         <h1 className="text-xl md:text-2xl font-semibold">Items: {cart.length}</h1>
-        <h1 className="text-xl md:text-2xl font-semibold">Total Price: $ {totalPrice}</h1>
+        <h1 className="text-xl md:text-2xl font-semibold">Total Price: $ {totalPrice.toFixed(2)}</h1>
       </div>
       <div className="w-full max-w-sm md:max-w-md lg:max-w-lg bg-white shadow-lg rounded-lg p-6">
         <h2 className="text-xl md:text-2xl font-semibold text-gray-700 mb-6 text-center">
