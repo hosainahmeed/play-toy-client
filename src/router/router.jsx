@@ -18,7 +18,6 @@ import AllUsers from '../pages/User/AllUsers'
 import ManageItemPage from '../AdminPage/ManageItemPage'
 import UpdateBlogPage from '../AdminPage/UpdateBlogPage'
 import BlogPageDetails from '../pages/BlogsPage/BlogPageDetails'
-import axios from 'axios'
 import UserHome from '../pages/userHome/UserHome'
 
 const router = createBrowserRouter([
@@ -160,6 +159,14 @@ const router = createBrowserRouter([
           },
           {
             path: '/dashboard/userHome',
+            element: (
+              <PrivetRouter>
+                <UserHome></UserHome>
+              </PrivetRouter> 
+            )
+          },
+          {
+            path: '/dashboard/adminHome',
             element: (
               <PrivetRouter>
                 <UserHome></UserHome>

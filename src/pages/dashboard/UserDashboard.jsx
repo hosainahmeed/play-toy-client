@@ -69,15 +69,12 @@ const UserDashboard = () => {
               <Menu.Item key='6' icon={<HomeOutlined />}>
                 <NavLink to='/dashboard/userHome'>User Home</NavLink>
               </Menu.Item>
-              <Menu.Item key='7' icon={<CalendarOutlined />}>
-                <NavLink to='/dashboard/reservation'>Reservation</NavLink>
-              </Menu.Item>
-              <Menu.Item key='8' icon={<WalletOutlined />}>
+              <Menu.Item key='7' icon={<WalletOutlined />}>
                 <NavLink to='/dashboard/paymentHistory'>
                   Payment History
                 </NavLink>
               </Menu.Item>
-              <Menu.Item key='9'>
+              <Menu.Item key='8'>
                 <NavLink to='/dashboard/myCart'>
                   <div
                     style={{
@@ -102,13 +99,13 @@ const UserDashboard = () => {
             </>
           )}
           <Menu.Divider />
-          <Menu.Item key='10' icon={<HomeOutlined />}>
+          <Menu.Item key='9' icon={<HomeOutlined />}>
             <NavLink to='/'>Home</NavLink>
           </Menu.Item>
-          <Menu.Item key='11' icon={<AppstoreOutlined />}>
+          <Menu.Item key='10' icon={<AppstoreOutlined />}>
             <NavLink to='/shop'>shop</NavLink>
           </Menu.Item>
-          <Menu.Item key='12' icon={<ShopOutlined />}>
+          <Menu.Item key='11' icon={<ShopOutlined />}>
             <NavLink to='/blogs'>Blogs</NavLink>
           </Menu.Item>
         </Menu>
@@ -131,8 +128,8 @@ const UserDashboard = () => {
         </Header>
         <Content
           style={{
-            padding: '16px',
-            background: '#fff'
+            padding: '2px',
+            background: '#fff',
           }}
         >
           <Outlet />
