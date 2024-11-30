@@ -7,9 +7,8 @@ import useCart from '../../Components/Hook/useCart'
 
 function CartPage () {
   const [totalPrice, setTotalPrice] = useState(0)
-
   const navigate = useNavigate()
-  const { cart, loading, setCart } = useCart()
+  const { cart, isLoading,refetchCart } = useCart()
 
   useEffect(() => {
     const price = cart.reduce(
@@ -20,10 +19,11 @@ function CartPage () {
   }, [cart])
 
   const handleRemoveItem = itemId => {
+    console.log(itemId);
     axios
       .delete(`http://localhost:5000/cart/${itemId}`)
       .then(() => {
-        setCart(prevItems => prevItems.filter(item => item._id !== itemId))
+        refetchCart()
         Swal.fire({
           icon: 'success',
           title: 'Removed',
@@ -44,7 +44,7 @@ function CartPage () {
     navigate('/payment')
   }
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className='container mx-auto p-6'>
         <h1 className='text-3xl font-semibold mb-6'>Your Cart</h1>

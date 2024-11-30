@@ -10,7 +10,7 @@ function ToyseDetails () {
   const toy = useLoaderData()
   const [quantity, setQuantity] = useState(1)
   const { user } = useAuth()
-  const { refetch } = useCart()
+  const { refetchCart } = useCart()
   const [previewVisible, setPreviewVisible] = useState(false)
 
   if (!toy) {
@@ -57,7 +57,7 @@ function ToyseDetails () {
     axios
       .post(`http://localhost:5000/cart`, cartItem)
       .then(result => {
-        refetch()
+        refetchCart()
         Swal.fire({
           icon: 'success',
           title: 'Success',

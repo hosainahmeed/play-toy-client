@@ -4,8 +4,6 @@ import {
   ShoppingCartOutlined,
   WalletOutlined,
   CalendarOutlined,
-  EditOutlined,
-  BookOutlined,
   AppstoreOutlined,
   ShopOutlined,
   PlusOutlined,
@@ -54,16 +52,13 @@ const UserDashboard = () => {
               <Menu.Item key='3' icon={<WalletOutlined />}>
                 <NavLink to='/dashboard/manageItem'>Manage Items</NavLink>
               </Menu.Item>
-              <Menu.Item key='4' icon={<BookOutlined />}>
-                <NavLink to='/dashboard/manageBooking'>Manage Booking</NavLink>
-              </Menu.Item>
-              <Menu.Item key='5' icon={<TeamOutlined />}>
+              <Menu.Item key='4' icon={<TeamOutlined />}>
                 <NavLink to='/dashboard/allUsers'>All Users</NavLink>
               </Menu.Item>
-              <Menu.Item key='6' icon={<TeamOutlined />}>
+              <Menu.Item key='5' icon={<TeamOutlined />}>
                 <NavLink to='/dashboard/blogUpdate'>Update Blog Page</NavLink>
               </Menu.Item>
-              <Menu.Item key='7' icon={<TeamOutlined />}>
+              <Menu.Item key='6' icon={<TeamOutlined />}>
                 <NavLink to='/dashboard/paymentHistory'>
                   Payment History
                 </NavLink>
@@ -104,23 +99,17 @@ const UserDashboard = () => {
                   </div>
                 </NavLink>
               </Menu.Item>
-              <Menu.Item key='10' icon={<EditOutlined />}>
-                <NavLink to='/dashboard/review'>Add Review</NavLink>
-              </Menu.Item>
-              <Menu.Item key='11' icon={<BookOutlined />}>
-                <NavLink to='/dashboard/myBookings'>My Booking</NavLink>
-              </Menu.Item>
             </>
           )}
           <Menu.Divider />
-          <Menu.Item key='12' icon={<HomeOutlined />}>
+          <Menu.Item key='10' icon={<HomeOutlined />}>
             <NavLink to='/'>Home</NavLink>
           </Menu.Item>
-          <Menu.Item key='13' icon={<AppstoreOutlined />}>
+          <Menu.Item key='11' icon={<AppstoreOutlined />}>
             <NavLink to='/shop'>shop</NavLink>
           </Menu.Item>
-          <Menu.Item key='14' icon={<ShopOutlined />}>
-            <NavLink to='/orderFood/salad'>Shop</NavLink>
+          <Menu.Item key='12' icon={<ShopOutlined />}>
+            <NavLink to='/blogs'>Blogs</NavLink>
           </Menu.Item>
         </Menu>
       </Sider>

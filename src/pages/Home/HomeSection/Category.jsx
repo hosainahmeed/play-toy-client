@@ -30,6 +30,7 @@ function Category () {
 
   const [priceRange, setPriceRange] = useState([0, 100])
   const { refetch } = useWishlist()
+  const {refetchCart} = useCart()
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -71,7 +72,7 @@ function Category () {
     axios
       .post(`http://localhost:5000/cart`, cartItem)
       .then(result => {
-        refetch()
+        refetchCart()
         Swal.fire({
           icon: 'success',
           title: 'Success',

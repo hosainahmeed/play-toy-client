@@ -10,19 +10,19 @@ import { useWishlist } from '../../Components/api/WishlistContext.jsx'
 
 export default function Header () {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-
   const { user, logOut } = useAuth()
   const { cart } = useCart()
   const { wishList } = useWishlist()
-
   const navigate = useNavigate()
-
-  const menuItems = useMemo(() => [
-    { label: 'Home', path: '/' },
-    { label: 'Shops', path: '/shop' },
-    { label: 'Blog', path: '/blogs' },
-    { label: 'Dashboard', path: '/dashboard' },
-  ], [])
+  const menuItems = useMemo(
+    () => [
+      { label: 'Home', path: '/' },
+      { label: 'Shops', path: '/shop' },
+      { label: 'Blog', path: '/blogs' },
+      { label: 'Dashboard', path: '/dashboard' }
+    ],
+    []
+  )
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen)
 
@@ -42,7 +42,10 @@ export default function Header () {
           icon={isDrawerOpen ? <IoMdClose /> : <CiMenuBurger />}
         />
         {/* Navbar Brand */}
-        <div onClick={handleNavigateHome} className='navbar-brand flex items-end gap-2 pr-3 md:px-12 py-4'>
+        <div
+          onClick={handleNavigateHome}
+          className='navbar-brand flex items-end gap-2 pr-3 md:px-12 py-4'
+        >
           <img
             src='https://cdn-icons-png.freepik.com/256/11835/11835521.png?semt=ais_hybrid'
             alt='play Logo'
@@ -64,7 +67,9 @@ export default function Header () {
         {/* Right Side Login and Signup */}
         <div className='flex gap-4 items-center justify-end'>
           <div className='indicator'>
-            <span className='indicator-item badge badge-secondary'>{wishList.length}</span>
+            <span className='indicator-item badge badge-secondary'>
+              {wishList.length}
+            </span>
             <div className='p-2'>
               <Link to={'wishList'}>
                 <FaHeart className='hover:scale-125 transition-all' />
@@ -72,7 +77,9 @@ export default function Header () {
             </div>
           </div>
           <div className='indicator'>
-            <span className='indicator-item badge badge-secondary'>{cart.length}</span>
+            <span className='indicator-item badge badge-secondary'>
+              {cart.length}
+            </span>
             <div className='p-2'>
               <Link to={'cart'}>
                 <FaCartPlus className='hover:scale-125 transition-all' />

@@ -19,6 +19,7 @@ import ManageItemPage from '../AdminPage/ManageItemPage'
 import UpdateBlogPage from '../AdminPage/UpdateBlogPage'
 import BlogPageDetails from '../pages/BlogsPage/BlogPageDetails'
 import axios from 'axios'
+import UserHome from '../pages/userHome/UserHome'
 
 const router = createBrowserRouter([
   {
@@ -147,6 +148,22 @@ const router = createBrowserRouter([
               <PrivetRouter>
                 <PaymentHistory></PaymentHistory>
               </PrivetRouter>
+            )
+          },
+          {
+            path: '/dashboard/myCart',
+            element: (
+              <PrivetRouter>
+                <CartPage></CartPage>
+              </PrivetRouter>
+            )
+          },
+          {
+            path: '/dashboard/userHome',
+            element: (
+              <PrivetRouter>
+                <UserHome></UserHome>
+              </PrivetRouter> 
             )
           },
           {
