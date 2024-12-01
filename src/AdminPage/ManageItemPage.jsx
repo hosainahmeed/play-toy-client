@@ -10,7 +10,7 @@ const ManageItems = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/products')
+      .get('https://playtoy-server.vercel.app/products')
       .then(response => {
         setProducts(response.data)
       })
@@ -21,7 +21,7 @@ const ManageItems = () => {
 
   const handleDelete = productId => {
     axios
-      .delete(`http://localhost:5000/products/${productId}`)
+      .delete(`https://playtoy-server.vercel.app/products/${productId}`)
       .then(() => {
         setProducts(products.filter(item => item._id !== productId))
         Swal.fire('Deleted!', 'The product has been deleted.', 'success')

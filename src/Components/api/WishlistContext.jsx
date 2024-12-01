@@ -15,7 +15,7 @@ export const WishlistProvider = ({ children }) => {
 
   const fetchWishlist = (userEmail) => {
     axios
-      .get('http://localhost:5000/wishList', { params: { userId: userEmail } })
+      .get('https://playtoy-server.vercel.app/wishList', { params: { userId: userEmail } })
       .then((response) => {
         setWishList(response.data || [])
       })
@@ -26,7 +26,7 @@ export const WishlistProvider = ({ children }) => {
 
   const fetchToysData = () => {
     axios
-      .get('http://localhost:5000/products')
+      .get('https://playtoy-server.vercel.app/products')
       .then((response) => {
         setToysData(response.data)
       })
@@ -37,7 +37,7 @@ export const WishlistProvider = ({ children }) => {
 
   const removeFromWishList = (userEmail, toyId) => {
     axios
-      .delete('http://localhost:5000/wishList', {
+      .delete('https://playtoy-server.vercel.app/wishList', {
         params: { userId: userEmail, toyId },
       })
       .then(() => {
@@ -70,7 +70,7 @@ export const WishlistProvider = ({ children }) => {
     }
 
     axios
-      .post('http://localhost:5000/cart', cartItem)
+      .post('https://playtoy-server.vercel.app/cart', cartItem)
       .then(() => {
         Swal.fire({
           icon: 'success',

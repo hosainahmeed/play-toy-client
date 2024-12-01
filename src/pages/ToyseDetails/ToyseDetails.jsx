@@ -55,7 +55,7 @@ function ToyseDetails () {
     console.log(cartItem)
 
     axios
-      .post(`http://localhost:5000/cart`, cartItem)
+      .post(`https://playtoy-server.vercel.app/cart`, cartItem)
       .then(result => {
         refetchCart()
         Swal.fire({

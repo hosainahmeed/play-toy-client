@@ -12,7 +12,7 @@ import { Skeleton } from 'antd'
 function Testimonials () {
   const [reviewsData, setReviewsData] = useState([])
   useEffect(() => {
-    axios.get('http://localhost:5000/reviews').then(res => {
+    axios.get('https://playtoy-server.vercel.app/reviews').then(res => {
       setReviewsData(res.data)
     })
   }, [])

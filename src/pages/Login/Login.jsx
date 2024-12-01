@@ -27,7 +27,7 @@ function Login () {
       const loggedInUser = result.user
       console.log(loggedInUser, 'not 29')
       const user = { email }
-      await axios.post('http://localhost:5000/jwt', user, {
+      await axios.post('https://playtoy-server.vercel.app/jwt', user, {
         withCredentials: true
       })
       Swal.fire({
@@ -55,7 +55,7 @@ function Login () {
     try {
       const user = await googleSignIn()
       await axios.post(
-        'http://localhost:5000/jwt',
+        'https://playtoy-server.vercel.app/jwt',
         { email: user.email },
         {
           withCredentials: true
