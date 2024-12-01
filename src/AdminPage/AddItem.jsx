@@ -22,7 +22,6 @@ const AddItemPage = () => {
     control,
     handleSubmit,
     formState: { errors },
-    setValue
   } = useForm()
 
   const onSubmit = data => {
@@ -31,7 +30,7 @@ const AddItemPage = () => {
       features
     }
     axios
-    .post('http://localhost:5000/products', itemData)
+    .post('https://playtoy-server.vercel.app/products', itemData)
     .then(() => {
       Swal.fire({
         icon: 'success',

@@ -11,7 +11,7 @@ const BlogsPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/blogs')
+        const response = await axios.get('https://playtoy-server.vercel.app/blogs')
         setBlogs(response.data)
       } catch (err) {
         setError('Error fetching blogs', err)
