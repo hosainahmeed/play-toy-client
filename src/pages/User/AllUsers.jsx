@@ -9,7 +9,7 @@ const AllUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:5000/users')
+      const res = await axios.get('https://playtoy-server.vercel.app/users')
       return res.data
     }
   })

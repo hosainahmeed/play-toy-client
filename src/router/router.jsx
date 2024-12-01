@@ -102,7 +102,7 @@ const router = createBrowserRouter([
           </PrivetRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/toysDetails/${params.id}`)
+          fetch(`https://playtoy-server.vercel.app/toysDetails/${params.id}`)
             .then(res => res.json())
             .catch(err => {
               console.error('Error fetching toy details:', err)

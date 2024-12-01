@@ -35,7 +35,7 @@ function Category () {
   const location = useLocation()
   const navigate = useNavigate()
   useEffect(() => {
-    axios.get('http://localhost:5000/products').then(res => {
+    axios.get('https://playtoy-server.vercel.app/products').then(res => {
       setToysData(res.data)
       const categories = [...new Set(res.data.map(toy => toy.category))]
       setUniqueCategories(categories)
@@ -70,7 +70,7 @@ function Category () {
     }
 
     axios
-      .post(`http://localhost:5000/cart`, cartItem)
+      .post(`https://playtoy-server.vercel.app/cart`, cartItem)
       .then(result => {
         refetchCart()
         Swal.fire({
@@ -122,7 +122,7 @@ function Category () {
     }
 
     axios
-      .post(`http://localhost:5000/wishList`, wishListData)
+      .post(`https://playtoy-server.vercel.app/wishList`, wishListData)
       .then(result => {
         if (result.data.insertedId) {
           refetch()

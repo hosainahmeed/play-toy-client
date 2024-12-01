@@ -21,7 +21,7 @@ function CartPage () {
   const handleRemoveItem = itemId => {
     console.log(itemId);
     axios
-      .delete(`http://localhost:5000/cart/${itemId}`)
+      .delete(`https://playtoy-server.vercel.app/cart/${itemId}`)
       .then(() => {
         refetchCart()
         Swal.fire({

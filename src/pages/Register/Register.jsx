@@ -21,7 +21,7 @@ const Register = () => {
     const userData = { displayName, email, photoURL }
 
     try {
-      await axios.post('http://localhost:5000/users', userData)
+      await axios.post('https://playtoy-server.vercel.app/users', userData)
       const result = await createUser(email, password)
       console.log(result)
       Swal.fire({
@@ -52,7 +52,7 @@ const Register = () => {
         const photoURL = user?.photoURL || 'default-photo-url'
         const userData = { displayName, email, photoURL }
 
-        axios.post('http://localhost:5000/users', userData)
+        axios.post('https://playtoy-server.vercel.app/users', userData)
         Swal.fire({
           icon: 'success',
           title: 'Google Sign-In Successful',
